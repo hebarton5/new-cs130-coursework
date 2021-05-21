@@ -1,0 +1,62 @@
+* {
+    box-sizing: border-box;
+}
+
+.container{
+    display: grid;
+    grid-template-columns: 1fr  4fr 4fr;
+    grid-template-rows:  1fr 6fr;
+    grid-template-areas: 
+        "top top top"
+        "left center right";
+}
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@100&display=swap');
+
+header, main, #inspiration{
+    /* display: flex; */
+    /* align-items: center; */
+    /* justify-content: center; */
+    font-family: 'Roboto Mono', monospace;
+    border: dotted 1px black;
+    padding: 10px;
+    font-weight: 200;
+    background-color: #81ceec;
+}
+
+header {
+    grid-area: top;
+    background:
+}
+
+main > tutorials{
+    grid-area: center;
+    background-color: #81ceec;
+}
+
+main > homework{
+    grid-area: left;
+    background-color: #81ceec;
+}
+
+.inspiration{
+    grid-area: right;
+}
+
+header, section {
+    padding: 20px;
+}
+h1{
+    font-family: 'Roboto Mono', monospace;
+    text-transform: uppercase;
+    font: size 2.5em;
+    font-weight: 200;
+}
+p, li {
+    line-height: 1.5em;
+}
+
+#inspiration {
+    background-color: #48c5f7;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
