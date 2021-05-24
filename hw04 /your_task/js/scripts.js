@@ -23,23 +23,53 @@ const getTracks = (term) => {
         .then((response) => {
             return response.json();
         })
-        .then(data => {
-            for(const track of data) {
-            document.querySelector('#tracks').innerHTML += 
-            `<section class="track-item preview" data-preview-track="${track.preview_url}">
-            <img src="${track.album.image_url}">
+        .then(tracks => {
+            document.querySelector('#tracks').innerHTML =  '';
+            let i = 0;
+            for(const track of tracks) {
+            const template = 
+            `<section class="track preview" data-index='${i}' data-preview-track="${track.preview_url}" onclick='playTrack(event)' 
+            img data-src="${track.album.image_url}" data-name = "${track.name}" data-artist="${track.artist.name}";>
+            <img src="${track.album.image_url}"/>
             <i class="fas play-track fa-play" aria-hidden="true"></i>
             <div class="label">
-                <h3>"${track.name} </h3>
+                <h3>"${track.name}" </h3>
                 <p>
-                    "${track.artist}"
+                    "${track.artist.name}"
                 </p>
             </div>
         </section>`
-        console.log(track);
-            }
-        })
+        document.querySelector('#tracks').innerHTML += template;
+        i += 1; 
+        console.log(track);  
+    if (`${track.preview_url}` === null) {
+        document.querySelector('#tracks').innerHTML = "No Songs Found" 
+    }
+} 
+})
 };
+const playTrack = (ev) => {
+    console.log(ev);
+    const sourceElement = ev.currentTarget;
+    console.log(sourceElement);
+    const idx = Number(sourceElement.dataset.index);
+    document.querySelector('#track').src = sourceElement.dataset.previewTrack; 
+    document.querySelector('.track-item').innerHTML ='';
+    console.log(sourceElement.dataset.artist);
+    document.querySelector('.track-item').innerHTML +=  `
+    <img src="${sourceElement.dataset.src}"/>
+    <i class="fas play-track fa-play" aria-hidden="true"></i>
+    <div class="label">
+        <h3>"${sourceElement.dataset.name}" </h3>
+        <p>
+            "${sourceElement.dataset.artist}"
+        </p>
+    </div>
+    </section>`
+    audioPlayer.setAudioFile(sourceElement.dataset.previewTrack);      
+    audioPlayer.play();
+}
+
 
 const getAlbums = (term) => {
     let url = baseURL + `?type=album&q=${term}`;
@@ -49,8 +79,9 @@ const getAlbums = (term) => {
             return response.json();
         })
         .then(data => {
+            document.querySelector('#albums').innerHTML = ''; 
             for(const album of data) {
-                document.querySelector('#albums').innerHTML += 
+                const template = 
                 `<section class="album-card" id="${album.id}">
                 <div>
                     <img src="${album.image_url}">
@@ -62,6 +93,10 @@ const getAlbums = (term) => {
                     </div>
                 </div>
             </section>`
+            document.querySelector('#albums').innerHTML +=  template 
+            if (`${album.id}` === null) {
+                document.querySelector('#albums').innerHTML = "No Albums Found" 
+            }    
             }
         })
 };
@@ -86,7 +121,10 @@ const getArtist = (term) => {
                     </a>
                 </div>
             </div>
-        </section>`     
+        </section>` 
+        if (`${artist.id}` === null) {
+            document.querySelector('#artist').innerHTML = "No Artists Found" 
+        }     
         });
 
 }

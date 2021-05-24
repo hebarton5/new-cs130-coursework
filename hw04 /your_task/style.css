@@ -231,7 +231,7 @@ header .fa-search {
     padding-left: 2px;
 }
 
-.track-item {
+.track {
     display: flex;
     padding: 5px 0px 0px 5px;
     width: 100%;
@@ -239,13 +239,13 @@ header .fa-search {
     flex-direction: row;
     cursor: pointer;
 }
-.track-item.preview:hover {
+.track.preview:hover {
     background: #F0F0F0;
 }
-.track-item i.play-track {
+.track i.play-track {
     display: none;
 }
-.track-item.preview:hover i.play-track {
+.track.preview:hover i.play-track {
     position: relative;
     display: inline;
     left: -1.4em;
@@ -254,19 +254,19 @@ header .fa-search {
     font-size: 2em;
     width: 0px;
 }
-.track-item img {
+.track img {
     height: 60px;
 }
-.track-item .label {
+.track .label {
     padding-left: 10px;
     display: flex;
     flex-direction: column;
 }
-.track-item .label h3 {
+.track .label h3 {
     margin-bottom: 0px;
     font-size: 0.9em;
 }
-.track-item .label p {
+.track .label p {
     font-size: 0.8em;
     margin-top: 5px;
 }
@@ -296,6 +296,33 @@ footer .track-item {
 }
 footer .track-item:hover {
     background: none;
+}
+.track-item {
+    display: flex;
+    padding: 5px 0px 0px 5px;
+    width: 100%;
+    min-width: 200px;
+    flex-direction: row;
+    cursor: pointer;
+}
+.track-item i.play-track {
+    display: none;
+}
+.track-item img {
+    height: 60px;
+}
+.track-item .label {
+    padding-left: 10px;
+    display: flex;
+    flex-direction: column;
+}
+.track-item .label h3 {
+    margin-bottom: 0px;
+    font-size: 0.9em;
+}
+.track-item .label p {
+    font-size: 0.8em;
+    margin-top: 5px;
 }
 
 .player {
